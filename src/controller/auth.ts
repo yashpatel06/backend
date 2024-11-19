@@ -3,10 +3,12 @@ import userModel from "../models/user";
 import twilio, { Twilio } from "twilio";
 import jwt from "jsonwebtoken";
 
-const twilioClient = twilio(
-  process.env.TWILIO_SID,
-  process.env.TWILIO_AUTH_TOKEN
-);
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_TOKEN;
+
+console.log(accountSid, "accountSid");
+
+const twilioClient = twilio(accountSid, authToken);
 
 export const loginWithNumberController = async (
   req: Request,
@@ -34,7 +36,7 @@ export const loginWithNumberController = async (
     twilioClient.messages
       .create({
         body: `Your OTP for login is: ${otp}`,
-        from: process.env.TWILIO_NUMBER!,
+        from: process.env.NUMBER!,
         to: `+91 ${phoneNumber}`,
       })
       .then(() => {

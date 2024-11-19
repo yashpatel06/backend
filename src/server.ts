@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import connect from "./src/config/db";
-import mainRoute from "./src/routes/mainRoutes";
+import connect from "./config/db";
+import mainRoute from "./routes/mainRoutes";
 import bodyParser from "body-parser";
 import cors from "cors";
 
@@ -27,4 +27,3 @@ app.get("/", (req: Request, res: Response) => {
 app.listen(process.env.PORT, () => {
   console.log(`Server is listening on port ${process.env.PORT}.`);
 });
-
